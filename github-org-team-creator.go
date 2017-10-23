@@ -23,7 +23,8 @@ func main() {
 	app.Action = func(c *cli.Context) error {
 		reader := bufio.NewReader(os.Stdin)
 		fmt.Print("Please enter your Github personal access token: ")
-		accessToken, _ := reader.ReadString('\n')
+		accessTokenRead, _ := reader.ReadString('\n')
+		accessToken := strings.TrimSuffix(accessTokenRead,"\n")
 		org := c.Args().Get(0)
 		team := c.Args().Get(1)
 		ts := oauth2.StaticTokenSource(
